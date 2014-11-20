@@ -1,34 +1,34 @@
 {
-  "name": "gangjs",
-  "version": "0.0.1",
-  "description": "Inter process communication, PubSub messaging and Web Proxy process collaboration mesh",
-  "main": "gang.js",
-  "scripts": {
-    "test": "node_modules/mocha/bin/mocha -R spec --recursive test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xenomuta/gangjs"
-  },
-  "keywords": [
-    "PubSub",
-    "axon",
-    "IPC",
-    "proxy",
-    "web",
-    "node.js"
-  ],
-  "author": "Rilke Petrosky Ulloa <xenomuta@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xenomuta/gangjs/issues"
-  },
-  "homepage": "https://github.com/xenomuta/gangjs",
-  "dependencies": {
-    "q": "~1.1.1",
-    "axon": "~2.0.1"
-  },
-  "devDependencies": {
-    "mocha": "~2.0.1"
-  }
+    "name": "gangjs",
+    "version": "0.0.1",
+    "description": "An Inter process communication, PubSub messaging and Web Proxy process collaboration mesh library for Node.js",
+    "main": "gang.js",
+    "scripts": {
+        "test": "node_modules/mocha/bin/mocha -R spec --recursive test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xenomuta/gangjs"
+    },
+    "keywords": [
+        "PubSub",
+        "axon",
+        "IPC",
+        "proxy",
+        "web",
+        "node.js"
+    ],
+    "author": "Rilke Petrosky Ulloa <xenomuta@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/xenomuta/gangjs/issues"
+    },
+    "homepage": "https://github.com/xenomuta/gangjs",
+    "dependencies": {
+        "q": "~1.1.1",
+        "axon": "~2.0.1"
+    },
+    "devDependencies": {
+        "mocha": "~2.0.1"
+    }
 }

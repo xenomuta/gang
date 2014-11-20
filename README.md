@@ -1,6 +1,6 @@
 # Gang.js
 
-An Inter process communication, PubSub messaging and Web Proxy process collaboration mesh for Node.js applications
+An Inter process communication, PubSub messaging and Web Proxy process collaboration mesh library for Node.js
 
 # Install
 
