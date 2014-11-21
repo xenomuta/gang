@@ -12,15 +12,17 @@ npm install gang
 
 # Usage
 
-## Server
+## Gang at the alley (Server)
 
 `...`
 
-## Client
+## Add a gangster (Client)
 
 `...`
 
 # Test
+
+... pending ...
 
 ```bash
 npm install gang
