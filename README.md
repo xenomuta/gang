@@ -4,26 +4,25 @@
 
 An Inter process communication, PubSub messaging and Web Proxy process collaboration mesh library for Node.js
 
-# Install
+## Install
 
 ```bash
 npm install gang
 ```
 
-# Usage
+## Usage
 
-## Gang at the alley (Server)
-
-`...`
-
-## Add a gangster (Client)
+### Gang at the alley (Server)
 
 `...`
 
-# Test
+### Add a gangster (Client)
 
-... pending ...
+`...`
+
+## Test
 
 ```bash
-npm install gang
+npm test
 ```
+_pending_
