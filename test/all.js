@@ -107,12 +107,13 @@ describe('Gang\'s', function () {
                 cleo = gang.gangster('Cleo', {
                     subAddress: 'tcp://127.0.0.1:8991',
                     http: {
-                        rule: /^\/api\//,
+                        rules: {
+                            '^/api(/.*)': '$1'
+                        },
                         address: '127.0.0.1',
                         port: 8992
                     }
                 }).onReady(function () {
-                    console.log('\x1b[01;43;30mCleo Ready\x1b[0m');
                     var request = http.request({
                         hostname: alleyConf.httpAddress,
                         port: alleyConf.httpPort,

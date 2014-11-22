@@ -1,5 +1,7 @@
 # Gang.js
 
+[![Build Status](https://travis-ci.org/xenomuta/gang.png?branch=master)](https://travis-ci.org/xenomuta/gang)
+
 ![The Gang](https://github.com/xenomuta/gang/raw/master/static/gang.jpeg "The Gang")
 
 An Inter process communication, PubSub messaging and Web Proxy process collaboration mesh library for Node.js
