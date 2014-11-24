@@ -104,7 +104,7 @@ describe('Gang\'s', function () {
                     res.write('Do you want a piece of me?');
                     res.end();
                 }),
-                cleo = gang.gangster('Cleo', {
+                cleoConf = {
                     subAddress: 'tcp://127.0.0.1:8991',
                     http: {
                         rules: {
@@ -113,24 +113,28 @@ describe('Gang\'s', function () {
                         address: '127.0.0.1',
                         port: 8992
                     }
-                }).onReady(function () {
+                },
+                cleo = gang.gangster('Cleo', cleoConf);
+            var _domain = require('domain').create();
+            _domain.on('error', function (e) {
+                console.error('ERROR >>>', e);
+            });
+            _domain.run(function () {
+                cleo.onReady(function () {
                     var request = http.request({
-                        hostname: alleyConf.httpAddress,
-                        port: alleyConf.httpPort,
+                        baseurl: cleoConf.http.address,
+                        port: cleoConf.http.port,
                         path: '/api/cleo',
                         method: 'GET'
                     }, function (res) {
-                        console.log('\x1b[01;43;30m%j\x1b[0m', res);
                         res.on('data', function (data) {
                             console.log('\x1b[01;43;30m%j\x1b[0m', data);
                         });
-                        res.on('error', function (e) {
-                            console.error('e>>>', e);
-                        });
                     });
-                    request.on('error', done);
                     request.end();
                 }).connect(alleyConf.subAddress);
+            });
+
         });
     });
 });
