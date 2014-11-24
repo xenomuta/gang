@@ -96,7 +96,7 @@ describe('Gang\'s', function () {
         });
     });
     describe('pimp', function () {
-        it('should proxy web requests according to routing rules', function (done) {
+        it.only('should proxy web requests according to routing rules', function (done) {
             var http = require('http'),
                 server = http.createServer(function (req, res) {
                     req.method.should.be.exactly('GET');
@@ -124,7 +124,11 @@ describe('Gang\'s', function () {
                         res.on('data', function (data) {
                             console.log('\x1b[01;43;30m%j\x1b[0m', data);
                         });
+                        res.on('error', function (e) {
+                            console.error('e>>>', e);
+                        });
                     });
+                    request.on('error', done);
                     request.end();
                 }).connect(alleyConf.subAddress);
         });
