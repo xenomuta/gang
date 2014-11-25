@@ -96,14 +96,8 @@ describe('Gang\'s', function () {
         });
     });
     describe('pimp', function () {
-        it.only('should proxy web requests according to routing rules', function (done) {
+        it('should proxy web requests according to routing rules', function (done) {
             var http = require('http'),
-                server = http.createServer(function (req, res) {
-                    req.method.should.be.exactly('GET');
-                    req.url.should.be.exactly('/api/cleo');
-                    res.write('Do you want a piece of me?');
-                    res.end();
-                }),
                 cleoConf = {
                     subAddress: 'tcp://127.0.0.1:8991',
                     http: {
@@ -114,27 +108,28 @@ describe('Gang\'s', function () {
                         port: 8992
                     }
                 },
-                cleo = gang.gangster('Cleo', cleoConf);
-            var _domain = require('domain').create();
-            _domain.on('error', function (e) {
-                console.error('ERROR >>>', e);
-            });
-            _domain.run(function () {
-                cleo.onReady(function () {
-                    var request = http.request({
-                        baseurl: cleoConf.http.address,
-                        port: cleoConf.http.port,
-                        path: '/api/cleo',
-                        method: 'GET'
-                    }, function (res) {
-                        res.on('data', function (data) {
-                            console.log('\x1b[01;43;30m%j\x1b[0m', data);
+                cleo = gang.gangster('Cleo', cleoConf).onReady(function () {
+                    server.listen(cleoConf.http.port, cleoConf.http.address, function () {
+                        var request = http.request({
+                            path: alleyConf.httpAddress,
+                            port: alleyConf.httpPort,
+                            path: '/api/cleo',
+                            method: 'GET'
+                        }, function (res) {
+                            res.on('data', function (data) {
+                                data.toString().should.be.exactly('Do you want a piece of me?');
+                                done();
+                            });
                         });
+                        request.end();
                     });
-                    request.end();
-                }).connect(alleyConf.subAddress);
-            });
-
+                }).connect(alleyConf.subAddress),
+                server = http.createServer(function (req, res) {
+                    req.method.should.be.exactly('GET');
+                    req.url.should.be.exactly('/cleo');
+                    res.write('Do you want a piece of me?');
+                    res.end();
+                });
         });
     });
 });
