@@ -75,6 +75,29 @@ describe('Gang\'s', function () {
                     }).onBroadcast(getBroadcast);
                 }).onBroadcast(getBroadcast);
         });
+        it('should send/receive private messages from/to gangsters', function (done) {
+            var number = Math.random(),
+                capone = gang.gangster('Capone', {
+                    subAddress: 'tcp://127.0.0.1:8991'
+                }).onMessage(function (name, message) {
+                    name.should.be.exactly('Alley');
+                    capone.emit('Alley', {
+                        number: message.number + 1
+                    });
+                }).connect(alleyConf.subAddress);
+
+            alley.onRegister(function (gangster) {
+                gangster.name.should.be.exactly('Capone');
+                alley.emit('Capone', {
+                    number: number
+                });
+            }).onMessage(function (name, message) {
+                name.should.be.exactly('Capone');
+                message.number.should.be.exactly(number + 1);
+                capone.close();
+                done();
+            });
+        });
     });
     describe('gangster', function () {
         it('should send/receive messages from/to other gangsters', function (done) {
@@ -111,7 +134,7 @@ describe('Gang\'s', function () {
                 cleo = gang.gangster('Cleo', cleoConf).onReady(function () {
                     server.listen(cleoConf.http.port, cleoConf.http.address, function () {
                         var request = http.request({
-                            path: alleyConf.httpAddress,
+                            host: alleyConf.httpAddress,
                             port: alleyConf.httpPort,
                             path: '/api/cleo',
                             method: 'GET'
