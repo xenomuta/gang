@@ -8,7 +8,7 @@ An inter-process communication, PubSub messaging and Web Proxy process collabora
 
 ## Features
 
-- IPC (inter-process communication) using Pub/Sub emitters using ![axon.js](https://github.com/tj/axon)
+- IPC (inter-process communication) using Pub/Sub emitters using [axon.js](https://github.com/tj/axon "Axon")
 - Send broadcast messages to all nodes
 - HTTP reverse proxy
 
